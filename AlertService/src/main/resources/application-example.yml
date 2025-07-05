@@ -1,0 +1,22 @@
+influx:
+  url: http://localhost:8086
+  token: INFLUX_TOKEN
+  org: INFLUX_ORGANIZATION
+  bucket: INFLUX_BUCKET
+
+webhook:
+    url: http://localhost:8081/alerts/webhook
+
+alerts:
+    temp: 40.00
+
+spring:
+    mail:
+        host: smtp.upm.es
+        port: 587
+        username: youremail@example.com
+        password: password
+        properties.mail.smtp.auth: true
+        properties.mail.smtp.starttls.enable: true
+server:
+  port: 8081
