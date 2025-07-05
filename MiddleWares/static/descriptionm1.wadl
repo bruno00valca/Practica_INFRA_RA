@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02
+                                 http://wadl.dev.java.net/2009/02/wadl.xsd">
+
+  <doc title="Middleware Sensor Data API">
+    Servicio REST para recibir datos de sensores y publicar a MQTT.
+  </doc>
+
+  <resources base="http://localhost:4000/">
+
+    <resource path="data">
+      <method name="POST" id="postSensorData">
+        <request>
+          <representation mediaType="application/json">
+            <param name="sensor_id" style="plain" type="xsd:string" required="true"/>
+            <param name="type" style="plain" type="xsd:string" required="true"/>
+            <param name="value" style="plain" type="xsd:float" required="true"/>
+            <param name="timestamp" style="plain" type="xsd:string" required="true"/>
+          </representation>
+        </request>
+
+        <response status="200">
+          <representation mediaType="text/plain"/>
+        </response>
+
+        <response status="429">
+          <representation mediaType="text/plain">
+            Rate limit exceeded
+          </representation>
+        </response>
+      </method>
+    </resource>
+
+  </resources>
+
+</application>
