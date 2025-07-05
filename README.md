@@ -64,12 +64,6 @@ cd Practica_INFRA_RA
 
 Compila y ejecuta la aplicación Java que simula los sensores de las tres fábricas.
 
-```bash
-cd simulador
-javac Simulador.java
-java Simulador
-```
-
 Esto genera hilos que hacen peticiones HTTP POST al endpoint `/data` cada 5 segundos.
 
 ---
@@ -113,11 +107,7 @@ FLASK_APP=app.py flask run --port=4001
 
 Edita `mosquitto.conf` para configurar el puerto y los logs si hace falta.
 
-Ejecuta Mosquitto:
-
-```bash
-mosquitto -c mosquitto.conf
-```
+Ejecuta Mosquitto y asegurate de que el listener está en el puerto 1883
 
 ---
 
@@ -126,9 +116,7 @@ mosquitto -c mosquitto.conf
 Suscribe al topic MQTT y almacena los datos:
 
 ```bash
-cd influx_middleware
 export INFLUX_TOKEN='TU_TOKEN'
-python middleware.py
 ```
 
 > ⚠️ Si usas PyCharm, asegúrate de definir las variables de entorno en el entorno de ejecución del IDE.
@@ -145,20 +133,11 @@ python middleware.py
 
 ### 8. Servicio Propio de Alertas
 
-Ejecuta el microservicio que envía alertas por temperatura cada 10 segundos:
+Este servicio de Spring Boot consulta si la temperatura de la Fábrica 1 supera los 40°C y envía un correo al correo que se configure.
 
-```bash
-cd alertas
-python servicio_alertas.py
-```
+Documentación disponible en: [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html)
 
-Este servicio consulta si la temperatura de la Fábrica 1 supera los 40°C y envía un correo al correo que se configure.
 
----
-
-### 9. Accede a la Documentación Swagger
-
-Disponible en: [http://localhost:8081/swagger-ui/index.html](http://localhost:8081/swagger-ui/index.html)
 
 ---
 
